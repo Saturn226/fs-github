@@ -14,3 +14,9 @@ describe('#getRepos()', () => {
       })
   })
 })
+
+// describe('#renderResult', () =>{
+//   it('is defined', ()=>{
+//     expect(renderResult).not.toBe(undefined)
+//   })
+// })
