@@ -6,16 +6,12 @@ export const getRepos = (name) => {
 }
 
 export const renderResult = (data) => {
-    const {login, name, location, company, bio, 
-        email, repos_url,public_repos  } = data
-    
-    const data_array = [name, company, location,bio, 
-            email, public_repos, repos_url]
     let html = ""
-    html += `<h1>${login}</h1>`
-    data_array.map(data => {
-        if (data)
-           html += `<p>${data}</p>`
+    html += `<h1>User: ${data.login}</h1>
+            <h2>Name: ${data.name}</h2>`
+    Object.keys(data).map(key => {
+        if (data[key] && key !== 'login' && key !== 'name')
+           html += `<p>${key} : ${data[key]}</p>`
         return html
     })
     document.getElementById("root").innerHTML = html
