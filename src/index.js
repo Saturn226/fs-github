@@ -4,7 +4,6 @@ import registerServiceWorker from './registerServiceWorker';
 export const getRepos = (name) => {
     return fetch(`http://api.github.com/users/${name}`)
         .then(res => res.json())
-        .then(data => renderResult(data))
 }
 
 export const renderResult = (data) => {
@@ -13,9 +12,14 @@ export const renderResult = (data) => {
     document.getElementById("root").innerHTML = html
 }
 
+export const getReposAndRender = (name) => {
+    getRepos(name)
+        .then(data => renderResult(data))
+}
+
 registerServiceWorker();
 
-getRepos('saturn226')
+getReposAndRender('saturn226')
 
 
 
