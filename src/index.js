@@ -1,5 +1,4 @@
 import fetch from "isomorphic-fetch"
-import registerServiceWorker from './registerServiceWorker';
 
 export const getRepos = (name) => {
     return fetch(`http://api.github.com/users/${name}`)
@@ -28,9 +27,17 @@ export const getReposAndRender = (name) => {
         .then(data => renderResult(data))
 }
 
-registerServiceWorker();
+export const searchForRepos = () =>{
+    let search = document.getElementById("query").value
+    getReposAndRender(search);
+    
+}
 
-getReposAndRender('saturn226')
+document.getElementById("search-box").addEventListener("submit", function(e){
+    e.preventDefault(); 
+    searchForRepos();
+})
+
 
 
 
