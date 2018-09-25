@@ -5,7 +5,6 @@ describe('#getRepos()', () => {
     expect(getRepos).not.toBe(undefined)
   })
 
-//fetch returns a promise
   it('should load user data', () => {
     getRepos("saturn226") // my repo
       .then(data => {

@@ -9,13 +9,11 @@ export const renderResult = (data) => {
     let html = ""
     html += `<h1>User: ${data.login}</h1>
             <h2>Name: ${data.name}</h2>`
-    Object.keys(data).map(key => {
+    Object.keys(data).forEach(key => {
         if (data[key] && key !== 'login' && key !== 'name')
            html += `<p>${key} : ${data[key]}</p>`
-        return html
     })
     document.getElementById("root").innerHTML = html
-
 }
 
 export const getReposAndRender = (name) => {
@@ -24,14 +22,15 @@ export const getReposAndRender = (name) => {
 }
 
 export const searchForRepos = () =>{
-    let search = document.getElementById("query").value
-    getReposAndRender(search);
-    
+    const search = document.getElementById("query").value
+    getReposAndRender(search);   
 }
 
-document.getElementById("search-box").addEventListener("submit", function(e){
+document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById("search-box").addEventListener("submit", function(e){
     e.preventDefault(); 
     searchForRepos();
+    })
 })
 
 
