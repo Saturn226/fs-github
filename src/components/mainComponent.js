@@ -11,9 +11,5 @@ export const MainComponent = () => {
 };
 
 const MainGrid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 20px;
-    grid-template-areas:"search results"
     
 `

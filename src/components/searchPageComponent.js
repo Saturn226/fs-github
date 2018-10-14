@@ -40,20 +40,28 @@ export class SearchPageComponent extends Component {
     render() {
         return (
             <Div>
-                <p>Search Page Component</p>
-                <form onSubmit={this.handleOnClick}>
-                    Search for user
-                    <input type="text" required value={this.state.searchUser} onChange={this.handleOnChange}></input>
-                    <input type="submit"></input>
-                </form>
+                <SearchArea>
+                    <p>Search Page Component</p>
+                    <form onSubmit={this.handleOnClick}>
+                        Search for user
+                        <input type="text" required value={this.state.searchUser} onChange={this.handleOnChange}></input>
+                        <input type="submit"></input>
+                    </form>
+                </SearchArea>
                 <ResultsPageComponent user={this.state.user} error={this.state.error}/>
 
             </Div>
         );
     };
 };
+const SearchArea = styled.div`
+    grid-area:search;
+    `
 
 const Div = styled.div`
-  grid-area: search;
-  border: 5px solid lightpink;
-`
+border: 5px solid lightpink;
+    display: grid;
+    grid-template-areas: "search"
+                        "results";
+    grid-gap: 20px;
+   `
