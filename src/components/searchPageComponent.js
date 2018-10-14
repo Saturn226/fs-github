@@ -10,14 +10,16 @@ export class SearchPageComponent extends Component {
         }
     }
 
+    handleErrors = (response) => {
+        if(!response.ok)
+            throw Error(response.statusText);
+            return response.json()
+    }
+
     searchUser = () => {
         if (this.state.searchUser) {
             return fetch(`http://api.github.com/users/` + this.state.searchUser) 
-                .then(response => {if (!response.ok) {
-                    throw Error(response.statusText);
-                } else {
-                    return response.json();
-                }})
+                .then(res => this.handleErrors(res))
                 .then(user => this.setState({user}))
                 .catch((e) => {this.setState({error: e.message})})
         }
@@ -41,7 +43,7 @@ export class SearchPageComponent extends Component {
                 <p>Search Page Component</p>
                 <form onSubmit={this.handleOnClick}>
                     Search for user
-                    <input type="text" value={this.state.searchUser} onChange={this.handleOnChange}></input>
+                    <input type="text" required value={this.state.searchUser} onChange={this.handleOnChange}></input>
                     <input type="submit"></input>
                 </form>
                 <ResultsPageComponent user={this.state.user} error={this.state.error}/>

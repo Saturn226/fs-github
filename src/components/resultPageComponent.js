@@ -10,15 +10,16 @@ export const ResultsPageComponent = (props) => {
     
     
     if (props.user) {
-        const data = props.user
-        const dataList = Object.keys(data).map((key) => {
-            return <li key={key}><strong>{key}:</strong> {data[key]}</li>
-        }  )
+        const {login, avatar_url, repos_url, name, organizations_url,bio} = props.user
+        
         return (
                 <Div>
                         <Img src={props.user.avatar_url}/>
                         <Ul>
-                            {dataList}
+                            <li><h1>{login}</h1></li>
+                            <li><h2>{name}</h2></li>
+                            <li>{bio}</li>
+
                         </Ul>
                   
                 </Div>
