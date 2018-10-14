@@ -11,9 +11,18 @@ export class SearchPageComponent extends Component {
     }
 
     searchUser = () => {
-        return fetch(`http://api.github.com/users/` + this.state.searchUser)
-            .then(res => res.json())
-            .then(user => this.setState({user}))
+        if (this.state.searchUser) {
+            return fetch(`http://api.github.com/users/` + this.state.searchUser) 
+                .then(response => {if (!response.ok) {
+                    throw Error(response.statusText);
+                } else {
+                    return response.json();
+                }})
+                .then(user => this.setState({user}))
+                .catch((e) => {this.setState({error: e.message})})
+        }
+        else
+            this.setState({error: "Not Found"})
     }
 
     handleOnChange = (e) => {
@@ -22,7 +31,8 @@ export class SearchPageComponent extends Component {
 
     handleOnClick = (e) => {
         e.preventDefault();
-        this.searchUser(e);
+        this.searchUser();
+        this.setState({searchUser: ""})
     }
 
     render() {
@@ -33,8 +43,9 @@ export class SearchPageComponent extends Component {
                     Search for user
                     <input type="text" value={this.state.searchUser} onChange={this.handleOnChange}></input>
                     <input type="submit"></input>
-                    <ResultsPageComponent user={this.state.user}/>
                 </form>
+                <ResultsPageComponent user={this.state.user} error={this.state.error}/>
+
             </Div>
         );
     };
