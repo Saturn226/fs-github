@@ -2,15 +2,18 @@ import React from "react";
 import styled from "styled-components"
 
 export const ResultsPageComponent = (props) => {
-    return (
-        <Div>
-            <Img src={props.img}/>
-            <h1>{props.username}</h1>
-            <h2>{props.name}</h2>
-            <p>{props.bio}</p>
-
-        </Div>
-    );
+    if (props.user) {  
+        return (
+                <Div>
+                        <Img src={props.user.avatar_url}/>
+                        <h1>{props.user.login}</h1>
+                        <h2>{props.user.name}</h2>
+                        <p>{props.user.bio}</p>
+                    
+                </Div>
+        );
+    }
+    return null;
 };
 
 const Div = styled.div`
@@ -32,10 +35,3 @@ const Img = styled.img`
     margin: 20px;
 
 `
-
-ResultsPageComponent.defaultProps = {
-    username: "Saturn226",
-    name: "Ashley",
-    bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum sed sint doloremque repellat, iste debitis.',
-    img: `https://source.unsplash.com/random/300x300?v=$2`
-}

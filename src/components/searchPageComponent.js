@@ -6,35 +6,39 @@ export class SearchPageComponent extends Component {
     constructor() {
         super();
         this.state = {
-            user: null
+            searchUser: ""
         }
+    }
+
+    searchUser = () => {
+        return fetch(`http://api.github.com/users/` + this.state.searchUser)
+            .then(res => res.json())
+            .then(user => this.setState({user}))
+    }
+
+    handleOnChange = (e) => {
+        this.setState({searchUser: e.target.value})
+    }
+
+    handleOnClick = (e) => {
+        e.preventDefault();
+        this.searchUser(e);
     }
 
     render() {
         return (
             <Div>
                 <p>Search Page Component</p>
-                <form onSubmit={handleOnClick}>
+                <form onSubmit={this.handleOnClick}>
                     Search for user
-                    <input type="text"></input>
+                    <input type="text" value={this.state.searchUser} onChange={this.handleOnChange}></input>
                     <input type="submit"></input>
-                    <ResultsPageComponent/>
-
+                    <ResultsPageComponent user={this.state.user}/>
                 </form>
             </Div>
         );
     };
 };
-
-export const searchUser = (name) => {
-    return fetch(`http://api.github.com/users/${name}`)
-        .then(res => res.json())
-}
-
-const handleOnClick = (e) => {
-     e.preventDefault();
-     searchUser();
-}
 
 const Div = styled.div`
   grid-area: search;

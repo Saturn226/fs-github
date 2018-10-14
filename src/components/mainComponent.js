@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {ResultsPageComponent} from "./resultPageComponent";
 import {SearchPageComponent} from "./searchPageComponent"
 
 export const MainComponent = () => {
