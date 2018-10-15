@@ -35,8 +35,9 @@ export default class reposComponent extends Component {
                     </Item>
         })
         return(
-             
                 <Ul>
+                    <h2>Most Recently Updated Repos</h2>
+
                     {repoList}
                 </Ul>
         
@@ -57,5 +58,6 @@ const Ul = styled.ul`
 const Item = styled.li` 
     min-height: 200px;
     min-width: 200px;
-    background-color: pink;
+    border: 5px dashed #BDF1FD;
+
 `

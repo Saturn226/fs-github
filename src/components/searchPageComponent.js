@@ -50,9 +50,9 @@ export class SearchPageComponent extends Component {
             <Div>
                 <SearchArea>
                     <form onSubmit={this.handleOnClick}>
-                        Search for user
+                        <strong>Search for user:</strong>
                         <input type="text" required value={this.state.searchUser} onChange={this.handleOnChange}></input>
-                        <button>Submit</button>
+                        <Button>Submit</Button>
                     </form>
                 </SearchArea>
                 <ResultsPageComponent user={this.state.user} error={this.state.error}/>
@@ -64,10 +64,20 @@ export class SearchPageComponent extends Component {
 const SearchArea = styled.div`
     grid-area:search;
     `
+const Button = styled.button`
+    border-radius: 9999px;
+    background-color: #00BCE1;
+    color: white;
+    width: 100px;
+    height: 20px;
+    margin: 10px;
+    font-family: "Aktiv Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    ;
+`
 
 const Div = styled.div`
-border: 5px solid lightpink;
     display: grid;
+    margin: 20px;
     grid-template-areas: "search"
                         "results";
     grid-gap: 20px;
