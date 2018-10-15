@@ -2,12 +2,27 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 
 export default class reposComponent extends Component {
-    constructor(){
-        super()
-        this.state ={
-            repos: []
-        }
+
+    state = {
+        repos: []
     }
+
+    componentDidMount(){
+        this.getRepos()
+    }
+
+    componentDidUpdate(){
+        this.getRepos()
+    }
+
+    getRepos = () => {
+            return fetch(this.props.repos_url + '?sort=updated-desc') 
+                .then(res => res.json())
+                .then(repos => this.setState({repos}))
+                .catch((e) => {this.setState({error: e.message})})
+        }
+    
+    
     render(){
         let limit = Math.min(this.state.repos.length, 4); // Use whichever number is smaller
         
@@ -27,21 +42,6 @@ export default class reposComponent extends Component {
         
         )
     }
-    
-    componentDidMount(){
-        this.getRepos()
-    }
-
-    componentDidUpdate(){
-        this.getRepos()
-    }
-
-    getRepos = () => {
-            return fetch(this.props.repos_url + '?sort=updated-desc') 
-                .then(res => res.json())
-                .then(repos => this.setState({repos}))
-                .catch((e) => {this.setState({error: e.message})})
-        }
     
 }
 
