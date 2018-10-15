@@ -1,21 +1,21 @@
-import { getRepos } from './index.js';
+// import { getRepos } from './index.jsx';
 
-describe('#getRepos()', () => {
-  it('is defined', () => {
-    expect(getRepos).not.toBe(undefined);
-  });
+// describe('#getRepos()', () => {
+//   it('is defined', () => {
+//     expect(getRepos).not.toBe(undefined);
+//   });
 
-  it('should load user data', () => {
-    getRepos('saturn226') // my repo
-      .then((data) => {
-        expect(data).toBeDefined;
-        expect(data.name).toBe('Ashley');
-      });
-  });
-});
+//   it('should load user data', () => {
+//     getRepos('saturn226') // my repo
+//       .then((data) => {
+//         expect(data).toBeDefined;
+//         expect(data.name).toBe('Ashley');
+//       });
+//   });
+// });
 
-// describe('#renderResult', () =>{
-//   it('is defined', ()=>{
-//     expect(renderResult).not.toBe(undefined)
-//   })
-// })
+// // describe('#renderResult', () =>{
+// //   it('is defined', ()=>{
+// //     expect(renderResult).not.toBe(undefined)
+// //   })
+// // })

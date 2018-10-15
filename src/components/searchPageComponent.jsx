@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import styled from "styled-components"
-import {ResultsPageComponent} from "./resultPageComponent.js"
+import {ResultsPageComponent} from "./resultPageComponent"
 
 export class SearchPageComponent extends Component {
 
     getInitialState = () => {
         return {
             searchUser: "",
-            error: null
+            error: null,
         }
     }
 
