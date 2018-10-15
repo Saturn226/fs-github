@@ -37,7 +37,7 @@ export default class reposComponent extends Component {
     }
 
     getRepos = () => {
-            return fetch(this.props.repos_url) 
+            return fetch(this.props.repos_url + '?sort=updated-desc') 
                 .then(res => res.json())
                 .then(repos => this.setState({repos}))
                 .catch((e) => {this.setState({error: e.message})})

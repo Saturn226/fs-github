@@ -1,17 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
 import styled from "styled-components"
 import ReposComponent from "./reposComponent.js"
 
-export const ResultsPageComponent = (props) => {
-    if (props.error) {
-        return (
-            <h1>{props.error}</h1>
-        )
-    }
+export default class ResultsPageComponent extends Component {    
     
     
-    if (props.user) {
-        const {login, avatar_url, repos_url, name, organizations_url,bio} = props.user
+   render(){ 
+    if (this.props.user) {
+        const {login, avatar_url, repos_url, name, organizations_url,bio} = this.props.user
         
         return (
                 <Div>
@@ -29,6 +25,8 @@ export const ResultsPageComponent = (props) => {
         );
     }else
     return(<h1>Search for A user!</h1>)
+   }
+
 };
 
 const Ul = styled.ul`
