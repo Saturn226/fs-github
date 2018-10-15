@@ -27,12 +27,10 @@ export class SearchPageComponent extends Component {
             return fetch(`http://api.github.com/users/` + this.state.searchUser) 
                 .then(res => this.handleErrors(res))
                 .then(user => this.setState({user}))
-                .then(()=> this.setState(this.getInitialState()))
+                .then(()=> this.setState(this.getInitialState())) //fixes an issue where child components may not rerender
 
                 .catch((e) => this.setState({error: e.message}))
-        }
-        else
-            this.setState({error: "Not Found"})
+        } 
     }
 
     handleOnChange = (e) => {
@@ -48,7 +46,7 @@ export class SearchPageComponent extends Component {
     render() {
         return (
             <Div>
-                <SearchArea>
+                <SearchArea> 
                     <form onSubmit={this.handleOnClick}>
                         <strong>Search for user:</strong>
                         <input type="text" required value={this.state.searchUser} onChange={this.handleOnChange}></input>
@@ -61,6 +59,8 @@ export class SearchPageComponent extends Component {
         );
     };
 };
+
+//styling
 const SearchArea = styled.div`
     grid-area:search;
     `

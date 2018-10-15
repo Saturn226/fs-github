@@ -4,9 +4,12 @@ import ReposComponent from './reposComponent.js';
 
 export default class ResultsPageComponent extends Component {
   render(){
+
+    //This will render an error if searchUser adds an error to the state
     if(this.props.error){
       return <h1>{this.props.error}</h1>
     }
+
     if (this.props.user) {
       const {
         login, avatar_url, repos_url, name = "NA", organizations_url, bio,
@@ -31,7 +34,7 @@ export default class ResultsPageComponent extends Component {
 
         </Div>
       );
-    } return (<h1>Search for a user!</h1>);
+    } return (<h1>Search for a user!</h1>); // Will render the first time component mounts
   }
 }
 

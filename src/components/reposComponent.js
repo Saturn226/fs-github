@@ -24,9 +24,12 @@ export default class reposComponent extends Component {
     
     
     render(){
-        let limit = Math.min(this.state.repos.length, 4); // Use whichever number is smaller
+        let limit = Math.min(this.state.repos.length, 4); //creating a limit for the amount of repos to show
+                                                         // for the future this can probably be passed in as a prop
+                                                         //the limit is 4, or the length of the repos array whichever is smaller
+                                                         //this ensures we wont go out of bounds on the map
         
-        const limitedArray  = this.state.repos.slice(0, limit)
+        const limitedArray  = this.state.repos.slice(0, limit) //grab the specified number or repos
 
         const repoList = limitedArray.map(repo =>{
             return <Item key={repo.id}>
@@ -46,11 +49,13 @@ export default class reposComponent extends Component {
     
 }
 
+
+//styled  components
 const Ul = styled.ul`
     grid-area: repos;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     grid-gap: 20px
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     list-style: none;
 `
 
